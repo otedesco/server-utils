@@ -1,5 +1,5 @@
 {
-  "name": "server-utils",
+  "name": "@otedesco/server-utils",
   "version": "0.0.0-development",
   "type": "module",
   "exports": "./build/index.js",
@@ -14,7 +14,8 @@
     "npm": "9.5.1"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "build": "npm run clean && npm run type:dts && npm run build:main",
