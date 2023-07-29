@@ -1,6 +1,6 @@
 {
   "name": "@otedesco/server-utils",
-  "version": "0.0.0-development",
+  "version": "3.0.2",
   "type": "commonjs",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "volta": {
     "node": "18.17.0",
-    "npm": "9.5.1"
+    "npm": "9.6.7"
   },
   "publishConfig": {
     "access": "public",
