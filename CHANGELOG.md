@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/otedesco/server-utils/compare/v3.0.2...v3.0.3) (2023-07-29)
+
+
+### ci
+
+* **github:** use reusable workflow from gh-action-templates ([60765cc](https://github.com/otedesco/server-utils/commit/60765cc95a5cef5859610394bc55f4a639a6a3c4))
+
 ## [3.0.2](https://github.com/otedesco/server-utils/compare/v3.0.1...v3.0.2) (2023-07-29)
 
 
