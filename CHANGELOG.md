@@ -1,3 +1,10 @@
+## [3.0.4](https://github.com/otedesco/server-utils/compare/v3.0.3...v3.0.4) (2023-07-31)
+
+
+### ci
+
+* **release.config.js:** changed release ([c9d95ad](https://github.com/otedesco/server-utils/commit/c9d95ad737d22e41090633c01b6dc695032503bc))
+
 ## [3.0.3](https://github.com/otedesco/server-utils/compare/v3.0.2...v3.0.3) (2023-07-29)
 
 

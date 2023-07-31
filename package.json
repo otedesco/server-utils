@@ -1,6 +1,6 @@
 {
   "name": "@otedesco/server-utils",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "type": "commonjs",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
