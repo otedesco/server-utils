@@ -2,11 +2,14 @@
   "version": "0.1",
   "language": "en",
   "words": [
+    "conventionalcommits",
     "degit",
     "esbuild",
-    "server-utils",
+    "execa",
+    "npmlog",
     "octocat",
     "rmrf",
+    "server-utils",
     "socio"
   ],
   "flagWords": [],
