@@ -3,7 +3,7 @@
   "changelog": [
     "@changesets/changelog-github",
     {
-      "repo": "otedesco/server_utils"
+      "repo": "otedesco/server-utils"
     }
   ],
   "commit": [
