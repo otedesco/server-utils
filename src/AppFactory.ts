@@ -33,18 +33,14 @@ abstract class AppFactory {
     this.initializeErrorHandling();
   }
 
-  private initializeExpressMiddlewares({
-    logFormat,
-    cors: corsOptions,
-  }: Pick<ConfigOptions, "logFormat" | "cors">) {
+  private initializeExpressMiddlewares({ logFormat, cors: corsOptions }: Pick<ConfigOptions, "logFormat" | "cors">) {
     this.logger.info("Loading default middlewares...");
     this.app.use(
       morgan(logFormat ?? "dev", {
         stream: {
-          write: (message) =>
-            this.logger.info(message.substring(0, message.lastIndexOf("\n"))),
+          write: (message) => this.logger.info(message.substring(0, message.lastIndexOf("\n"))),
         },
-      }),
+      })
     );
 
     this.app.use(cors(corsOptions ?? { origin: "*", credentials: false }));

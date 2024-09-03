@@ -32,7 +32,7 @@ export class LoggerFactory {
     this.logger.add(
       new transports.Console({
         format: format.combine(format.splat(), format.colorize()),
-      }),
+      })
     );
 
     loggerInstances.set(label, this);
@@ -47,7 +47,7 @@ export class LoggerFactory {
     });
     const formatPrintf = format.printf(
       ({ level, message, label: _label, timestamp, stack }) =>
-        `${timestamp} ${level} [${_label}] ${message} ${stack || ""}`,
+        `${timestamp} ${level} [${_label}] ${message} ${stack || ""}`
     );
 
     return format.combine(formatLabel, formatTimestamp, formatPrintf);
