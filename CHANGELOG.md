@@ -1,5 +1,11 @@
 # @otedesco/server-utils
 
+## 0.0.2
+
+### Patch Changes
+
+- [#4](https://github.com/otedesco/server-utils/pull/4) [`4aaeda1`](https://github.com/otedesco/server-utils/commit/4aaeda11d51356d868842c9e49a3b13527280e3d) Thanks [@otedesco](https://github.com/otedesco)! - centralize gh wf
+
 ## 0.0.1
 
 ### Patch Changes
