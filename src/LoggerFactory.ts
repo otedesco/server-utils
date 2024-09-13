@@ -1,6 +1,7 @@
-import appRoot from "app-root-path";
 import { existsSync, mkdirSync } from "node:fs";
 import { basename } from "node:path";
+
+import appRoot from "app-root-path";
 import { createLogger, format, type Logger, transports } from "winston";
 import winstonDaily from "winston-daily-rotate-file";
 
