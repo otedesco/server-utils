@@ -76,9 +76,8 @@ describe("AppFactory", () => {
       const infoSpy = vi.spyOn(mockLogger, "info");
       const app = new MockAppFactory({ ...defaultConfig, routes });
 
-      const routers = _.map(app.getServer()._router.stack ?? [], "name").filter(
-        (name) => name === "router",
-      );
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument
+      const routers = _.map(app.getServer()._router.stack ?? [], "name").filter((name) => name === "router");
       expect(routers.length).toBe(routes.length);
       expect(infoSpy.mock.calls[2]?.[0]).toBe("Loading routes...");
       expect(infoSpy.mock.calls[3]?.[0]).toBe("Routes loaded");
@@ -103,14 +102,10 @@ describe("AppFactory", () => {
       const errorSpy = vi.spyOn(mockLogger, "error");
       const errorMessage = "connections failed";
       try {
-        await app.initializeConnections(
-          new Promise((_, reject) => reject(new Error(errorMessage))),
-        );
+        await app.initializeConnections(new Promise((_, reject) => reject(new Error(errorMessage))));
       } catch (err) {
         expect((err as Error).message).toBe(errorMessage);
-        expect(errorSpy.mock.calls[0]?.[0]).toBe(
-          "An Error has occurred during connection init",
-        );
+        expect(errorSpy.mock.calls[0]?.[0]).toBe("An Error has occurred during connection init");
       }
     });
   });

@@ -1,6 +1,6 @@
+import { beforeEach,describe, expect, test } from "vitest";
 import { Logger } from "winston";
 
-import { describe, expect, test, beforeEach } from "vitest";
 import { LoggerFactory } from "../LoggerFactory";
 
 describe("LoggerFactory Module", () => {
