@@ -1,4 +1,4 @@
-import { beforeEach,describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vitest";
 import { Logger } from "winston";
 
 import { LoggerFactory } from "../LoggerFactory";
@@ -26,8 +26,8 @@ describe("LoggerFactory Module", () => {
   });
 
   test("logger transports are set correctly", () => {
-    const transports = loggerFactory.getLoggerTransports();
-    expect(transports.debugTransport).toBeDefined();
-    expect(transports.errorTransport).toBeDefined();
+    const [debugTransport, errorTransport] = loggerFactory.getLoggerTransports();
+    expect(debugTransport).toBeDefined();
+    expect(errorTransport).toBeDefined();
   });
 });

@@ -1,8 +1,8 @@
-import { existsSync, mkdirSync } from "node:fs";
+import { accessSync, constants, existsSync, mkdirSync } from "node:fs";
 import { basename } from "node:path";
 
 import appRoot from "app-root-path";
-import { createLogger, format, type Logger, transports } from "winston";
+import { createLogger, format, type Logger, LoggerOptions, transports } from "winston";
 import winstonDaily from "winston-daily-rotate-file";
 
 const logsDirectory = `${appRoot.path}/logs`;
@@ -11,6 +11,7 @@ const loggerInstances = new Map<string, LoggerFactory>();
 
 export class LoggerFactory {
   public logger: Logger;
+  private canWriteToLogs: boolean;
 
   public static getInstance(filename: string) {
     const label = basename(filename);
@@ -22,14 +23,21 @@ export class LoggerFactory {
   }
 
   constructor(label: string) {
-    if (!existsSync(logsDirectory)) {
+    this.canWriteToLogs = this.checkWritePermissions(logsDirectory);
+
+    if (this.canWriteToLogs && !existsSync(logsDirectory)) {
       mkdirSync(logsDirectory);
     }
-
-    this.logger = createLogger({
+    const loggerConfig: LoggerOptions = {
       format: this.getLoggerFormats(label),
-      transports: Object.values(this.getLoggerTransports()),
-    });
+    };
+
+    if (this.canWriteToLogs) {
+      loggerConfig.transports = this.getLoggerTransports();
+    }
+
+    this.logger = createLogger(loggerConfig);
+
     this.logger.add(
       new transports.Console({
         format: format.combine(format.splat(), format.colorize()),
@@ -39,13 +47,19 @@ export class LoggerFactory {
     loggerInstances.set(label, this);
   }
 
+  private checkWritePermissions(directory: string): boolean {
+    try {
+      accessSync(directory, constants.W_OK);
+      return true;
+    } catch (err) {
+      console.warn(`No write permissions for ${directory}. Falling back to console logging.`);
+      return false;
+    }
+  }
+
   public getLoggerFormats = (label: string): Logger["format"] => {
-    const formatLabel = format.label({
-      label,
-    });
-    const formatTimestamp = format.timestamp({
-      format: "YYYY-MM-DD HH:mm:ss",
-    });
+    const formatLabel = format.label({ label });
+    const formatTimestamp = format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" });
     const formatPrintf = format.printf(
       ({ level, message, label: _label, timestamp, stack }) =>
         `${timestamp} ${level} [${_label}] ${message} ${stack || ""}`
@@ -64,6 +78,7 @@ export class LoggerFactory {
       json: false,
       zippedArchive: true,
     });
+
     const errorTransport = new winstonDaily({
       level: "error",
       datePattern: "YYYY-MM-DD",
@@ -75,6 +90,6 @@ export class LoggerFactory {
       zippedArchive: true,
     });
 
-    return { debugTransport, errorTransport };
+    return [debugTransport, errorTransport];
   };
 }
