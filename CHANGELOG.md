@@ -1,5 +1,11 @@
 # @otedesco/server-utils
 
+## 0.0.3
+
+### Patch Changes
+
+- [#6](https://github.com/otedesco/server-utils/pull/6) [`3ddd750`](https://github.com/otedesco/server-utils/commit/3ddd75059ba4f0e8cf9957220c54cbc5508ba8f4) Thanks [@otedesco](https://github.com/otedesco)! - do not store logs on logs folder if process does not have writing permissions
+
 ## 0.0.2
 
 ### Patch Changes
