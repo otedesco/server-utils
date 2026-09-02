@@ -2,7 +2,13 @@ import { accessSync, constants, existsSync, mkdirSync } from "node:fs";
 import { basename } from "node:path";
 
 import appRoot from "app-root-path";
-import { createLogger, format, type Logger, LoggerOptions, transports } from "winston";
+import {
+  createLogger,
+  format,
+  type Logger,
+  LoggerOptions,
+  transports,
+} from "winston";
 import winstonDaily from "winston-daily-rotate-file";
 
 const logsDirectory = `${appRoot.path}/logs`;
@@ -41,7 +47,7 @@ export class LoggerFactory {
     this.logger.add(
       new transports.Console({
         format: format.combine(format.splat(), format.colorize()),
-      })
+      }),
     );
 
     loggerInstances.set(label, this);
@@ -52,7 +58,9 @@ export class LoggerFactory {
       accessSync(directory, constants.W_OK);
       return true;
     } catch (err) {
-      console.warn(`No write permissions for ${directory}. Falling back to console logging.`);
+      console.warn(
+        `No write permissions for ${directory}. Falling back to console logging.`,
+      );
       return false;
     }
   }
@@ -62,7 +70,7 @@ export class LoggerFactory {
     const formatTimestamp = format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" });
     const formatPrintf = format.printf(
       ({ level, message, label: _label, timestamp, stack }) =>
-        `${timestamp} ${level} [${_label}] ${message} ${stack || ""}`
+        `${timestamp} ${level} [${_label}] ${message} ${stack || ""}`,
     );
 
     return format.combine(formatLabel, formatTimestamp, formatPrintf);
