@@ -26,7 +26,8 @@ describe("LoggerFactory Module", () => {
   });
 
   test("logger transports are set correctly", () => {
-    const [debugTransport, errorTransport] = loggerFactory.getLoggerTransports();
+    const [debugTransport, errorTransport] =
+      loggerFactory.getLoggerTransports();
     expect(debugTransport).toBeDefined();
     expect(errorTransport).toBeDefined();
   });
