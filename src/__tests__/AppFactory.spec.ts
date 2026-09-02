@@ -123,11 +123,15 @@ describe("AppFactory", () => {
 
     test("should initialize connections", () => {
       const app = new MockAppFactory(defaultConfig);
-      const listenSpy = vi.spyOn(app.getServer(), "listen");
+      const listenSpy = vi
+        .spyOn(app.getServer(), "listen")
+        .mockImplementation(() => undefined as never);
       app.listen();
 
       expect(listenSpy).toHaveBeenCalledTimes(1);
       expect(listenSpy.mock.calls[0]?.[0]).toBe(3000);
+
+      listenSpy.mockRestore();
     });
   });
 });
