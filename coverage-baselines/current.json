@@ -4,7 +4,11 @@
   "commit": "3253c0ead56d5a45b7b5d68ae963f9e574fea46c",
   "timestamp": "2026-09-03T00:00:00Z",
   "metrics": {
-    "statements": { "covered": 190, "total": 229, "percent": 82.96943231441048 },
+    "statements": {
+      "covered": 190,
+      "total": 229,
+      "percent": 82.96943231441048
+    },
     "branches": { "covered": 14, "total": 20, "percent": 70 },
     "functions": { "covered": 10, "total": 15, "percent": 66.66666666666666 },
     "lines": { "covered": 190, "total": 229, "percent": 82.96943231441048 }
